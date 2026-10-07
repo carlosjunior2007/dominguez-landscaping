@@ -1,0 +1,362 @@
+/*
+  Fuente de los estilos. NO se sube al hosting: se compila a assets/css/styles.css
+  Recompilar después de cambiar clases en el HTML/JS (ver HOSTINGER.md):
+    ./tailwindcss -i src/tailwind.css -o assets/css/styles.css --minify
+*/
+@import "tailwindcss";
+@source not "../plantilla-form-php";
+
+/* ===================== TEMA (colores del logo) ===================== */
+@theme {
+    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+
+    --color-brand-50: #eef8f0;
+    --color-brand-100: #d5eedb;
+    --color-brand-500: #2e9a4a;
+    --color-brand-600: #1f7a3a;
+    --color-brand-700: #17622e;
+    --color-brand-900: #0f3a1d;
+
+    --color-roof-500: #1d6fd1;
+    --color-roof-700: #154f96;
+
+    --color-wood-600: #6b3f23;
+
+    --color-cream: #f7f5ef;
+    --color-ink: #1a2420;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 5rem;
+    }
+    /* Las animaciones de entrada (fade-left/right) empiezan fuera de la pantalla:
+       sin esto el celular "ve" la página más ancha y hace zoom out */
+    html,
+    body {
+        overflow-x: clip;
+    }
+    body {
+        @apply bg-cream text-ink font-sans antialiased;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+    }
+}
+
+/* ===================== DETALLES DE DISEÑO ===================== */
+@layer components {
+    /* Explicit viewport height: the blurred header contains positioned children. */
+    .mobile-menu-panel {
+        height: calc(100vh - 5rem);
+        height: calc(100dvh - 5rem);
+        overscroll-behavior: contain;
+    }
+
+    /* Eyebrow de sección con una rayita delante */
+    .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.625rem;
+    }
+    .eyebrow::before {
+        content: "";
+        width: 1.75rem;
+        height: 2px;
+        border-radius: 9999px;
+        background: currentColor;
+        opacity: 0.7;
+    }
+    .text-center .eyebrow::after,
+    .eyebrow.eyebrow-center::after {
+        content: "";
+        width: 1.75rem;
+        height: 2px;
+        border-radius: 9999px;
+        background: currentColor;
+        opacity: 0.7;
+    }
+
+    /* Subrayado tipo pincel debajo de una palabra del título */
+    .swoosh {
+        position: relative;
+        white-space: nowrap;
+        z-index: 0;
+    }
+    .swoosh::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -0.12em;
+        height: 0.42em;
+        z-index: -1;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20' preserveAspectRatio='none'%3E%3Cpath d='M3 14 C 40 4, 90 3, 197 9 C 150 9, 80 11, 30 17' fill='none' stroke='%232e9a4a' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E")
+            no-repeat center / 100% 100%;
+        opacity: 0.85;
+        /* --draw va de 0 a 1 con el scroll (setup.js → drawSwooshes) */
+        clip-path: inset(-20% calc((1 - var(--draw, 1)) * 100%) -20% 0);
+    }
+    .swoosh-light::after {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20' preserveAspectRatio='none'%3E%3Cpath d='M3 14 C 40 4, 90 3, 197 9 C 150 9, 80 11, 30 17' fill='none' stroke='%2385d39a' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E");
+    }
+
+    /* Fondos con manchas de color suaves (sin HTML extra) */
+    .bg-deco {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+    }
+    .bg-deco::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background:
+            radial-gradient(38rem 28rem at -5% 0%, rgb(213 238 219 / 0.75), transparent 65%),
+            radial-gradient(32rem 24rem at 105% 100%, rgb(29 111 209 / 0.08), transparent 65%),
+            radial-gradient(24rem 18rem at 100% 10%, rgb(46 154 74 / 0.07), transparent 70%);
+    }
+    /* Patrón de puntitos que se desvanece */
+    .bg-dots {
+        position: relative;
+        isolation: isolate;
+    }
+    .bg-dots::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background-image: radial-gradient(rgb(31 122 58 / 0.14) 1.2px, transparent 1.2px);
+        background-size: 22px 22px;
+        mask-image: radial-gradient(ellipse at 85% 15%, black, transparent 55%);
+    }
+
+    /* Brillo que cruza los botones verdes al pasar el mouse */
+    a.bg-brand-600:not(.fixed),
+    button.bg-brand-600 {
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+    }
+    a.bg-brand-600:not(.fixed)::after,
+    button.bg-brand-600::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: linear-gradient(115deg, transparent 30%, rgb(255 255 255 / 0.3) 50%, transparent 70%);
+        transform: translateX(-110%);
+        transition: transform 0.7s ease;
+    }
+    a.bg-brand-600:not(.fixed):hover::after,
+    button.bg-brand-600:hover::after {
+        transform: translateX(110%);
+    }
+
+    /* Icono de tarjeta que "salta" al pasar el mouse */
+    .icon-pop {
+        transition:
+            transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+            background-color 0.3s,
+            color 0.3s;
+    }
+    .group:hover .icon-pop {
+        transform: translateY(-4px) rotate(-6deg) scale(1.08);
+        background-color: var(--color-brand-600);
+        color: #fff;
+    }
+
+    /* Cinta de servicios que se desplaza sola */
+    .marquee {
+        display: flex;
+        width: max-content;
+        animation: marquee 40s linear infinite;
+    }
+    .marquee:hover {
+        animation-play-state: paused;
+    }
+    @keyframes marquee {
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
+    /* Hojas flotando en las secciones oscuras */
+    .float-leaf {
+        animation: float-leaf 9s ease-in-out infinite;
+    }
+    .float-leaf-slow {
+        animation: float-leaf 13s ease-in-out infinite reverse;
+    }
+    @keyframes float-leaf {
+        0%,
+        100% {
+            transform: translateY(0) rotate(0deg);
+        }
+        50% {
+            transform: translateY(-22px) rotate(14deg);
+        }
+    }
+
+    /* Flecha propia para los <select> */
+    .select-chevron {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231f7a3a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 0.9rem center;
+        background-size: 1.1rem;
+    }
+
+    /* Palomita en las tarjetas de servicio seleccionadas (formulario) */
+    .tile-check {
+        opacity: 0;
+    }
+    .peer:checked + span .tile-check {
+        opacity: 1;
+    }
+
+    /* Preguntas frecuentes */
+    .faq-item summary::-webkit-details-marker {
+        display: none;
+    }
+    .faq-item[open] .faq-icon {
+        transform: rotate(45deg);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .marquee,
+        .float-leaf,
+        .float-leaf-slow {
+            animation: none;
+        }
+    }
+}
+
+/* ===================== MAPA (Leaflet genera este HTML al ejecutarse) ===================== */
+#service-area-map {
+    font-family: inherit;
+}
+#service-area-map:focus-visible {
+    outline: 3px solid #1f7a3a;
+    outline-offset: -3px;
+}
+/* Mapa en tonos suaves verdosos para que combine con la marca */
+#service-area-map .leaflet-tile-pane {
+    filter: grayscale(0.9) sepia(0.25) hue-rotate(55deg) saturate(1.35) brightness(1.04) contrast(0.92);
+}
+/* Controles de zoom redondeados */
+#service-area-map .leaflet-bar {
+    border: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgb(15 58 29 / 0.18);
+}
+#service-area-map .leaflet-bar a {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    color: #17622e;
+    border-bottom-color: #d5eedb;
+}
+#service-area-map .leaflet-bar a:hover {
+    background: #eef8f0;
+}
+#service-area-map .leaflet-control-zoom {
+    margin: 0 16px 16px 0;
+}
+#service-area-map .leaflet-control-attribution {
+    font-size: 10px;
+    background: rgb(255 255 255 / 0.75);
+    border-top-left-radius: 8px;
+}
+/* Pines */
+.sa-marker {
+    background: transparent;
+    border: 0;
+}
+.sa-marker__pin {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    margin: 0 auto;
+    border-radius: 50% 50% 50% 0;
+    background: #1f7a3a;
+    border: 3px solid #fff;
+    box-shadow: 0 6px 14px rgba(15, 58, 29, 0.35);
+    transform: rotate(-45deg);
+}
+.sa-marker__pin svg {
+    width: 16px;
+    height: 16px;
+    color: #fff;
+    transform: rotate(45deg);
+}
+.sa-marker--main .sa-marker__pin {
+    width: 46px;
+    height: 46px;
+    background: #17622e;
+}
+.sa-marker--main .sa-marker__pin svg {
+    width: 22px;
+    height: 22px;
+}
+.sa-marker__pulse {
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    width: 26px;
+    height: 10px;
+    margin-left: -13px;
+    border-radius: 50%;
+    background: rgba(31, 122, 58, 0.4);
+    animation: sa-pulse 2s ease-out infinite;
+}
+@keyframes sa-pulse {
+    0% {
+        transform: scale(0.6);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(2.6);
+        opacity: 0;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .sa-marker__pulse {
+        animation: none;
+    }
+}
+/* Etiquetas fijas con el nombre de la ciudad */
+.leaflet-tooltip.sa-label {
+    padding: 4px 10px;
+    border: 0;
+    border-radius: 9999px;
+    background: #fff;
+    color: #0f3a1d;
+    font-weight: 700;
+    font-size: 13px;
+    box-shadow: 0 4px 12px rgb(15 58 29 / 0.2);
+}
+.leaflet-tooltip.sa-label::before {
+    display: none;
+}
+.sa-popup .leaflet-popup-content-wrapper {
+    border-radius: 12px;
+}
+.sa-popup .leaflet-popup-content {
+    margin: 10px 14px;
+    font-weight: 600;
+    color: #1f7a3a;
+}
+#service-area .sa-map-hint.is-hidden {
+    opacity: 0;
+}

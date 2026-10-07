@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /get-quote.php
+Disallow: /tmp_rate_limit/
+
+Sitemap: https://YOUR-DOMAIN.com/sitemap.xml

@@ -1,0 +1,14 @@
+.agents/
+.codex/
+_site/
+tmp_rate_limit/
+node_modules/
+.env
+.env.*
+*.log
+.DS_Store
+tailwindcss
+plantilla-form-php/
+get-quote.php
+HOSTINGER.md
+.htaccess
