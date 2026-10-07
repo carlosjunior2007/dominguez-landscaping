@@ -8,7 +8,7 @@ Sitio web de servicios de jardinería y lavado a presión en Wilmington y Leland
 
 ## Formulario
 
-GitHub Pages solo sirve archivos estáticos. La vista previa conserva los campos, indica que no envía solicitudes y ofrece enlaces para llamar o escribir por correo. No publica PHP ni archivos de configuración del servidor.
+GitHub Pages solo sirve archivos estáticos. La vista previa conserva el diseño final del formulario sin avisos adicionales. Si se intenta enviar, JavaScript informa que no se envían solicitudes desde esta versión. No publica PHP ni archivos de configuración del servidor.
 
 El formulario PHP y la configuración de Hostinger se conservan únicamente en la copia local, fuera de este repositorio público.
 
