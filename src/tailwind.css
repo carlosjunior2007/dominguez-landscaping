@@ -360,3 +360,28 @@
 #service-area .sa-map-hint.is-hidden {
     opacity: 0;
 }
+
+/* ===================== CARRUSEL EN CELULAR =====================
+   Lista que en pantallas chicas se desliza de lado (en vez de apilar tarjetas
+   y hacer la página larguísima). Desde 640px vuelve a ser la cuadrícula normal.
+   Va fuera de @layer para ganarle a las utilidades de Tailwind (grid, gap...). */
+@media (max-width: 639px) {
+    .m-scroller {
+        display: flex;
+        gap: 0.875rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: 1rem;
+        margin-inline: -1rem;
+        padding: 0.5rem 1rem 1.25rem;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+    .m-scroller::-webkit-scrollbar {
+        display: none;
+    }
+    .m-scroller > * {
+        flex: 0 0 82%;
+        scroll-snap-align: start;
+    }
+}

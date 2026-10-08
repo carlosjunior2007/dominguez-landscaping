@@ -458,13 +458,56 @@ function initGallery() {
   const btnsNext = dialog.querySelectorAll('[data-lb-next]');
   const btnClose = dialog.querySelector('[data-lb-close]');
 
+  // Categoría de cada foto según su data-caption (o data-group si se quiere forzar)
+  const groupOf = (btn) => {
+    if (btn.dataset.group) return btn.dataset.group;
+    const c = (btn.dataset.caption || '').toLowerCase();
+    if (c.includes('fence')) return 'fences';
+    if (c.includes('pressure')) return 'pressure';
+    return 'landscaping';
+  };
+
   const items = thumbs.map((btn) => {
     const t = btn.querySelector('img');
-    return { src: btn.dataset.full || t.src, alt: t.alt, label: btn.dataset.caption || '' };
+    return { src: btn.dataset.full || t.src, alt: t.alt, label: btn.dataset.caption || '', group: groupOf(btn) };
   });
 
-  let current = 0;
+  let list = items.map((_, i) => i); // índices visibles según el filtro
+  let pos = 0;                        // posición dentro de "list"
+  let current = 0;                    // índice real en "items"
   let opener = null;
+
+  /* ---------- Filtros ---------- */
+  const filterBtns = Array.from(document.querySelectorAll('#gallery [data-gallery-filter]'));
+  filterBtns.forEach((b) => {
+    const f = b.dataset.galleryFilter;
+    const n = f === 'all' ? items.length : items.filter((it) => it.group === f).length;
+    const badge = b.querySelector('[data-filter-count]');
+    if (badge) badge.textContent = n;
+    if (!n) b.hidden = true;
+  });
+
+  function applyFilter(f) {
+    list = items.map((it, i) => i).filter((i) => f === 'all' || items[i].group === f);
+    thumbs.forEach((btn, i) => {
+      const wrap = btn.parentElement;
+      const n = list.indexOf(i);
+      const show = n !== -1;
+      wrap.hidden = !show;
+      if (show) { wrap.style.opacity = ''; wrap.style.transform = ''; }
+      if (n !== -1) btn.setAttribute('aria-label', 'Open photo ' + (n + 1) + ' of ' + list.length + ': ' + items[i].label);
+    });
+    miniBtns.forEach((b, i) => { if (b) b.hidden = !list.includes(i); });
+    filterBtns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.galleryFilter === f)));
+    if (window.ScrollTrigger) ScrollTrigger.refresh();
+  }
+  filterBtns.forEach((b) => b.addEventListener('click', () => applyFilter(b.dataset.galleryFilter)));
+
+
+  // Enlaces externos tipo <a href="#gallery" data-gallery-show="fences">
+  document.querySelectorAll('[data-gallery-show]').forEach((a) => {
+    a.addEventListener('click', () => applyFilter(a.dataset.galleryShow));
+  });
 
   // Miniaturas (solo escritorio)
   const miniBtns = items.map((it, i) => {
@@ -474,19 +517,21 @@ function initGallery() {
     b.className = 'h-14 w-20 shrink-0 overflow-hidden rounded-lg opacity-50 ring-2 ring-transparent transition hover:opacity-100 focus-visible:outline-none focus-visible:ring-brand-500 aria-[current=true]:opacity-100 aria-[current=true]:ring-brand-500';
     b.setAttribute('aria-label', 'Show photo ' + (i + 1));
     b.innerHTML = '<img src="' + it.src + '" alt="" loading="lazy" class="h-full w-full object-cover">';
-    b.addEventListener('click', () => show(i));
+    b.addEventListener('click', () => show(list.indexOf(i)));
     thumbsBox.appendChild(b);
     return b;
   });
 
-  function preload(i) {
-    const n = (i + items.length) % items.length;
-    const p = new Image();
-    p.src = items[n].src;
+  applyFilter('all');
+
+  function preload(p) {
+    const img = new Image();
+    img.src = items[list[(p + list.length) % list.length]].src;
   }
 
-  function show(i) {
-    current = (i + items.length) % items.length;
+  function show(p) {
+    pos = (p + list.length) % list.length;
+    current = list[pos];
     const it = items[current];
     img.style.opacity = '0';
     img.onload = () => { img.style.opacity = '1'; };
@@ -496,11 +541,19 @@ function initGallery() {
     caption.textContent = it.alt;
     if (label) label.textContent = it.label;
     miniBtns.forEach((b, n) => b && b.setAttribute('aria-current', n === current ? 'true' : 'false'));
+    centerMini();
+    counter.textContent = (pos + 1) + ' / ' + list.length;
+    preload(pos + 1);
+    preload(pos - 1);
+  }
+
+  // Desliza la tira de miniaturas para que la foto actual quede en el centro
+  function centerMini() {
     const mini = miniBtns[current];
-    if (mini && thumbsBox) thumbsBox.scrollLeft = mini.offsetLeft - (thumbsBox.clientWidth - mini.offsetWidth) / 2;
-    counter.textContent = (current + 1) + ' / ' + items.length;
-    preload(current + 1);
-    preload(current - 1);
+    if (!mini || !thumbsBox) return;
+    const box = thumbsBox.getBoundingClientRect();
+    const r = mini.getBoundingClientRect();
+    thumbsBox.scrollLeft += r.left - box.left - (box.width - r.width) / 2;
   }
 
   function open(i, trigger) {
@@ -508,6 +561,7 @@ function initGallery() {
     show(i);
     document.documentElement.style.overflow = 'hidden';
     dialog.showModal();
+    centerMini(); // antes de abrir el diálogo la tira no tiene tamaño
     btnClose.focus();
   }
 
@@ -516,11 +570,11 @@ function initGallery() {
   }
 
   thumbs.forEach((btn, i) => {
-    btn.addEventListener('click', () => open(i, btn));
+    btn.addEventListener('click', () => open(Math.max(0, list.indexOf(i)), btn));
   });
 
-  btnsPrev.forEach((b) => b.addEventListener('click', () => show(current - 1)));
-  btnsNext.forEach((b) => b.addEventListener('click', () => show(current + 1)));
+  btnsPrev.forEach((b) => b.addEventListener('click', () => show(pos - 1)));
+  btnsNext.forEach((b) => b.addEventListener('click', () => show(pos + 1)));
   btnClose.addEventListener('click', close);
 
   // Esc is handled natively by <dialog> (fires "cancel" then "close").
@@ -531,8 +585,8 @@ function initGallery() {
   });
 
   dialog.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') { e.preventDefault(); show(current - 1); }
-    else if (e.key === 'ArrowRight') { e.preventDefault(); show(current + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); show(pos - 1); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); show(pos + 1); }
   });
 
   // Click on the backdrop / empty area closes (not on the image or buttons).
@@ -554,7 +608,7 @@ function initGallery() {
     const dx = e.changedTouches[0].clientX - startX;
     const dy = e.changedTouches[0].clientY - startY;
     if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
-      show(dx < 0 ? current + 1 : current - 1);
+      show(dx < 0 ? pos + 1 : pos - 1);
     }
   }, { passive: true });
 }

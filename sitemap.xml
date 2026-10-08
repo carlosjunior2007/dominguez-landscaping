@@ -8,6 +8,12 @@
         <image:image><image:loc>https://YOUR-DOMAIN.com/assets/Portada1.webp</image:loc></image:image>
         <image:image><image:loc>https://YOUR-DOMAIN.com/assets/Portada2.webp</image:loc></image:image>
         <image:image><image:loc>https://YOUR-DOMAIN.com/assets/Portada3.webp</image:loc></image:image>
+        <image:image><image:loc>https://YOUR-DOMAIN.com/assets/Fotos/19.webp</image:loc></image:image>
+        <image:image><image:loc>https://YOUR-DOMAIN.com/assets/Fotos/24.webp</image:loc></image:image>
+        <image:image><image:loc>https://YOUR-DOMAIN.com/assets/Fotos/18.webp</image:loc></image:image>
+        <image:image><image:loc>https://YOUR-DOMAIN.com/assets/Fotos/22.webp</image:loc></image:image>
+        <image:image><image:loc>https://YOUR-DOMAIN.com/assets/Fotos/21.webp</image:loc></image:image>
+        <image:image><image:loc>https://YOUR-DOMAIN.com/assets/Fotos/9.webp</image:loc></image:image>
     </url>
     <url>
         <loc>https://YOUR-DOMAIN.com/contact.html</loc>
