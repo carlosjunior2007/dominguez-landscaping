@@ -202,6 +202,18 @@
                                     "@type": "Offer",
                                     "itemOffered": {
                                         "@type": "Service",
+                                        "name": "Trash Can and AC Enclosures",
+                                        "description": "Wood or vinyl enclosures with a gate to hide trash cans, recycling bins and AC units.",
+                                        "areaServed": [
+                                            "Wilmington, NC",
+                                            "Leland, NC"
+                                        ]
+                                    }
+                                },
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Service",
                                         "name": "Pressure Washing",
                                         "description": "Pressure washing for house siding, driveways and sidewalks."
                                     }
@@ -283,6 +295,14 @@
                                 "acceptedAnswer": {
                                     "@type": "Answer",
                                     "text": "We build pressure-treated wood privacy fences in styles like shadowbox and solid board, sized to your property. We'll look at your fence line and give you a free estimate."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "Do you build trash can or AC enclosures?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Yes. We build enclosures with a gate to hide trash cans, recycling bins and AC units, in wood or vinyl to match your home and fence."
                                 }
                             },
                             {
@@ -797,7 +817,7 @@
                     <i data-lucide="fence" class="size-7" aria-hidden="true"></i>
                   </span>
                   <h3 class="mt-4 font-display text-xl font-bold text-ink">Privacy Fences</h3>
-                  <p class="mt-2 text-ink/70 leading-relaxed">Wood privacy fences built to give your yard more privacy and a clean property line.</p>
+                  <p class="mt-2 text-ink/70 leading-relaxed">Wood privacy fences, plus trash can and AC enclosures in wood or vinyl.</p>
                   <a href="#privacy-fences" class="mt-auto inline-flex items-center gap-1.5 pt-4 text-sm font-semibold text-brand-700 hover:text-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500">
                     See our fence work
                     <i data-lucide="arrow-right" class="size-4" aria-hidden="true"></i>
@@ -926,6 +946,38 @@
                     <p class="text-xs text-ink/60 sm:text-sm">Wilmington · Leland · nearby</p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Enclosures para botes de basura y aire acondicionado -->
+          <div class="mx-auto mt-16 max-w-7xl px-4 sm:px-6 md:mt-20 lg:px-8" data-animate="fade-up">
+            <div class="grid overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-wood-600/10 sm:grid-cols-5">
+              <div class="grid grid-cols-2 gap-1 sm:col-span-2">
+                <img src="assets/Fotos/22.webp" width="554" height="1200" loading="lazy" decoding="async"
+                     alt="Wood enclosure with a gate that hides trash cans and an AC unit beside a gray house"
+                     class="h-48 w-full object-cover sm:h-full">
+                <img src="assets/Fotos/20.webp" width="554" height="1200" loading="lazy" decoding="async"
+                     alt="Wood trash can and AC enclosure with a gate and post caps along the side of a gray house"
+                     class="h-48 w-full object-cover sm:h-full">
+              </div>
+              <div class="flex flex-col justify-center p-6 sm:col-span-3 sm:p-8 lg:p-10">
+                <p class="eyebrow text-sm font-semibold uppercase tracking-widest text-wood-600">Also Available</p>
+                <h3 class="mt-2 font-display text-2xl font-bold leading-tight text-ink md:text-3xl">Trash Can &amp; AC Enclosures</h3>
+                <p class="mt-3 text-ink/75">
+                  Hide trash cans, recycling bins and AC units behind a clean enclosure with a gate.
+                  We build them in <strong class="font-semibold text-ink">wood or vinyl</strong> to match your home and fence.
+                </p>
+                <ul class="mt-5 flex flex-wrap gap-2 text-sm font-semibold">
+                  <li class="inline-flex items-center gap-1.5 rounded-full bg-[#f4ede3] px-3 py-1.5 text-wood-600"><i data-lucide="trash-2" class="size-4" aria-hidden="true"></i>Trash &amp; recycling bins</li>
+                  <li class="inline-flex items-center gap-1.5 rounded-full bg-[#f4ede3] px-3 py-1.5 text-wood-600"><i data-lucide="fan" class="size-4" aria-hidden="true"></i>AC units</li>
+                  <li class="inline-flex items-center gap-1.5 rounded-full bg-[#f4ede3] px-3 py-1.5 text-wood-600"><i data-lucide="layers" class="size-4" aria-hidden="true"></i>Wood or vinyl</li>
+                </ul>
+                <a href="contact.html?service=Trash%20%26%20AC%20Enclosures#quote-form"
+                   class="mt-6 inline-flex items-center gap-2 self-start whitespace-nowrap rounded-full bg-brand-600 px-6 py-3.5 font-semibold text-white shadow-md shadow-brand-900/20 transition hover:bg-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500">
+                  Get an Enclosure Estimate
+                  <i data-lucide="arrow-right" class="size-5" aria-hidden="true"></i>
+                </a>
               </div>
             </div>
           </div>
@@ -1164,7 +1216,7 @@
             <!-- Filtros (las categorías salen de data-caption de cada foto, ver initGallery en setup.js) -->
             <div class="-mx-4 -mt-5 mb-8 flex snap-x scroll-px-4 gap-2 overflow-x-auto px-4 pt-1 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:mb-10 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0 md:-mt-8 md:mb-12" role="group" aria-label="Filter projects" data-gallery-filters>
               <button type="button" data-gallery-filter="all" aria-pressed="true" class="inline-flex shrink-0 snap-start items-center gap-2 whitespace-nowrap rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-ink ring-1 ring-black/10 transition hover:ring-brand-500 aria-pressed:bg-brand-600 aria-pressed:text-white aria-pressed:ring-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500">All Work <span class="rounded-full bg-black/10 px-2 text-xs" data-filter-count></span></button>
-              <button type="button" data-gallery-filter="fences" aria-pressed="false" class="inline-flex shrink-0 snap-start items-center gap-2 whitespace-nowrap rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-ink ring-1 ring-black/10 transition hover:ring-brand-500 aria-pressed:bg-brand-600 aria-pressed:text-white aria-pressed:ring-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"><i data-lucide="fence" class="size-4" aria-hidden="true"></i>Privacy Fences <span class="rounded-full bg-black/10 px-2 text-xs" data-filter-count></span></button>
+              <button type="button" data-gallery-filter="fences" aria-pressed="false" class="inline-flex shrink-0 snap-start items-center gap-2 whitespace-nowrap rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-ink ring-1 ring-black/10 transition hover:ring-brand-500 aria-pressed:bg-brand-600 aria-pressed:text-white aria-pressed:ring-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"><i data-lucide="fence" class="size-4" aria-hidden="true"></i>Fences &amp; Enclosures <span class="rounded-full bg-black/10 px-2 text-xs" data-filter-count></span></button>
               <button type="button" data-gallery-filter="landscaping" aria-pressed="false" class="inline-flex shrink-0 snap-start items-center gap-2 whitespace-nowrap rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-ink ring-1 ring-black/10 transition hover:ring-brand-500 aria-pressed:bg-brand-600 aria-pressed:text-white aria-pressed:ring-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"><i data-lucide="trees" class="size-4" aria-hidden="true"></i>Landscaping <span class="rounded-full bg-black/10 px-2 text-xs" data-filter-count></span></button>
               <button type="button" data-gallery-filter="pressure" aria-pressed="false" class="inline-flex shrink-0 snap-start items-center gap-2 whitespace-nowrap rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-ink ring-1 ring-black/10 transition hover:ring-brand-500 aria-pressed:bg-brand-600 aria-pressed:text-white aria-pressed:ring-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"><i data-lucide="droplets" class="size-4" aria-hidden="true"></i>Pressure Washing <span class="rounded-full bg-black/10 px-2 text-xs" data-filter-count></span></button>
             </div>
@@ -1236,10 +1288,10 @@
                 </button>
               </div>
               <div class="aspect-square sm:aspect-[4/3]" data-animate="fade-up">
-                <button type="button" class="group relative block h-full w-full overflow-hidden rounded-xl bg-brand-100 shadow-md shadow-ink/10 ring-1 ring-black/5 transition-shadow hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-cream sm:rounded-2xl" data-gallery-item data-index="7" data-full="assets/Fotos/22.webp" data-caption="Privacy Fence" aria-label="Open photo 8 of 26: Privacy Fence" aria-haspopup="dialog">
-                  <img src="assets/Fotos/22.webp" alt="Wood privacy fence side gate with black hardware next to a gray house" width="554" height="1200" loading="lazy" decoding="async" class="block h-full w-full object-cover transition-transform duration-500 ease-out motion-safe:group-hover:scale-105 motion-safe:group-focus-visible:scale-105">
+                <button type="button" class="group relative block h-full w-full overflow-hidden rounded-xl bg-brand-100 shadow-md shadow-ink/10 ring-1 ring-black/5 transition-shadow hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-cream sm:rounded-2xl" data-gallery-item data-index="7" data-full="assets/Fotos/22.webp" data-caption="Trash &amp; AC Enclosure" aria-label="Open photo 8 of 26: Trash &amp; AC Enclosure" aria-haspopup="dialog">
+                  <img src="assets/Fotos/22.webp" alt="Wood enclosure with a gate that hides trash cans and an AC unit beside a gray house" width="554" height="1200" loading="lazy" decoding="async" class="block h-full w-full object-cover transition-transform duration-500 ease-out motion-safe:group-hover:scale-105 motion-safe:group-focus-visible:scale-105">
                   <span class="pointer-events-none absolute inset-0 flex items-end justify-between gap-3 bg-linear-to-t from-ink/70 via-ink/10 to-transparent p-2.5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 sm:p-4" aria-hidden="true">
-                    <span class="min-w-0 truncate rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-semibold text-brand-900 sm:px-3 sm:text-xs">Privacy Fence</span>
+                    <span class="min-w-0 truncate rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-semibold text-brand-900 sm:px-3 sm:text-xs">Trash &amp; AC Enclosure</span>
                     <span class="hidden size-10 place-items-center rounded-full bg-white/90 text-brand-700 shadow sm:grid"><i data-lucide="expand" class="size-5"></i></span>
                   </span>
                 </button>
@@ -1335,10 +1387,10 @@
                 </button>
               </div>
               <div class="aspect-square sm:aspect-[4/3]" data-animate="fade-up">
-                <button type="button" class="group relative block h-full w-full overflow-hidden rounded-xl bg-brand-100 shadow-md shadow-ink/10 ring-1 ring-black/5 transition-shadow hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-cream sm:rounded-2xl" data-gallery-item data-index="18" data-full="assets/Fotos/20.webp" data-caption="Privacy Fence" aria-label="Open photo 19 of 26: Privacy Fence" aria-haspopup="dialog">
-                  <img src="assets/Fotos/20.webp" alt="Wood privacy fence with a gate on the side of a gray house" width="554" height="1200" loading="lazy" decoding="async" class="block h-full w-full object-cover transition-transform duration-500 ease-out motion-safe:group-hover:scale-105 motion-safe:group-focus-visible:scale-105">
+                <button type="button" class="group relative block h-full w-full overflow-hidden rounded-xl bg-brand-100 shadow-md shadow-ink/10 ring-1 ring-black/5 transition-shadow hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-cream sm:rounded-2xl" data-gallery-item data-index="18" data-full="assets/Fotos/20.webp" data-caption="Trash &amp; AC Enclosure" aria-label="Open photo 19 of 26: Trash &amp; AC Enclosure" aria-haspopup="dialog">
+                  <img src="assets/Fotos/20.webp" alt="Wood trash can and AC enclosure with a gate and post caps along the side of a gray house" width="554" height="1200" loading="lazy" decoding="async" class="block h-full w-full object-cover transition-transform duration-500 ease-out motion-safe:group-hover:scale-105 motion-safe:group-focus-visible:scale-105">
                   <span class="pointer-events-none absolute inset-0 flex items-end justify-between gap-3 bg-linear-to-t from-ink/70 via-ink/10 to-transparent p-2.5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 sm:p-4" aria-hidden="true">
-                    <span class="min-w-0 truncate rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-semibold text-brand-900 sm:px-3 sm:text-xs">Privacy Fence</span>
+                    <span class="min-w-0 truncate rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-semibold text-brand-900 sm:px-3 sm:text-xs">Trash &amp; AC Enclosure</span>
                     <span class="hidden size-10 place-items-center rounded-full bg-white/90 text-brand-700 shadow sm:grid"><i data-lucide="expand" class="size-5"></i></span>
                   </span>
                 </button>
@@ -1353,10 +1405,10 @@
                 </button>
               </div>
               <div class="aspect-square sm:aspect-[4/3]" data-animate="fade-up">
-                <button type="button" class="group relative block h-full w-full overflow-hidden rounded-xl bg-brand-100 shadow-md shadow-ink/10 ring-1 ring-black/5 transition-shadow hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-cream sm:rounded-2xl" data-gallery-item data-index="20" data-full="assets/Fotos/23.webp" data-caption="Privacy Fence" aria-label="Open photo 21 of 26: Privacy Fence" aria-haspopup="dialog">
-                  <img src="assets/Fotos/23.webp" alt="Wood privacy fence and gate closing off a side yard between two homes" width="1200" height="554" loading="lazy" decoding="async" class="block h-full w-full object-cover transition-transform duration-500 ease-out motion-safe:group-hover:scale-105 motion-safe:group-focus-visible:scale-105">
+                <button type="button" class="group relative block h-full w-full overflow-hidden rounded-xl bg-brand-100 shadow-md shadow-ink/10 ring-1 ring-black/5 transition-shadow hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-cream sm:rounded-2xl" data-gallery-item data-index="20" data-full="assets/Fotos/23.webp" data-caption="Trash &amp; AC Enclosure" aria-label="Open photo 21 of 26: Trash &amp; AC Enclosure" aria-haspopup="dialog">
+                  <img src="assets/Fotos/23.webp" alt="Side-yard wood enclosure with a gate hiding the AC unit next to a gray house" width="1200" height="554" loading="lazy" decoding="async" class="block h-full w-full object-cover transition-transform duration-500 ease-out motion-safe:group-hover:scale-105 motion-safe:group-focus-visible:scale-105">
                   <span class="pointer-events-none absolute inset-0 flex items-end justify-between gap-3 bg-linear-to-t from-ink/70 via-ink/10 to-transparent p-2.5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 sm:p-4" aria-hidden="true">
-                    <span class="min-w-0 truncate rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-semibold text-brand-900 sm:px-3 sm:text-xs">Privacy Fence</span>
+                    <span class="min-w-0 truncate rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-semibold text-brand-900 sm:px-3 sm:text-xs">Trash &amp; AC Enclosure</span>
                     <span class="hidden size-10 place-items-center rounded-full bg-white/90 text-brand-700 shadow sm:grid"><i data-lucide="expand" class="size-5"></i></span>
                   </span>
                 </button>
@@ -1776,6 +1828,15 @@
                   </span>
                 </summary>
                 <p class="px-6 pb-6 leading-relaxed text-ink/75">We serve Wilmington, NC, Leland, NC and the surrounding areas. If you&#x27;re not sure we cover your neighborhood, call us at (910) 330-3783 and we&#x27;ll let you know.</p>
+              </details>
+              <details class="faq-item group rounded-2xl bg-white shadow-sm ring-1 ring-black/5 transition open:shadow-md open:ring-brand-100">
+                <summary class="flex cursor-pointer list-none items-center justify-between gap-4 rounded-2xl px-6 py-5 font-display text-lg font-semibold text-ink focus-visible:outline-2 focus-visible:outline-brand-500">
+                  Do you build trash can or AC enclosures?
+                  <span class="faq-icon grid size-9 shrink-0 place-items-center rounded-full bg-brand-50 text-brand-600 transition-transform duration-300" aria-hidden="true">
+                    <i data-lucide="plus" class="size-5"></i>
+                  </span>
+                </summary>
+                <p class="px-6 pb-6 leading-relaxed text-ink/75">Yes. We build enclosures with a gate to hide trash cans, recycling bins and AC units, in wood or vinyl to match your home and fence.</p>
               </details>
               <details class="faq-item group rounded-2xl bg-white shadow-sm ring-1 ring-black/5 transition open:shadow-md open:ring-brand-100">
                 <summary class="flex cursor-pointer list-none items-center justify-between gap-4 rounded-2xl px-6 py-5 font-display text-lg font-semibold text-ink focus-visible:outline-2 focus-visible:outline-brand-500">

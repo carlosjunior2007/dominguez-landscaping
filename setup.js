@@ -462,7 +462,7 @@ function initGallery() {
   const groupOf = (btn) => {
     if (btn.dataset.group) return btn.dataset.group;
     const c = (btn.dataset.caption || '').toLowerCase();
-    if (c.includes('fence')) return 'fences';
+    if (c.includes('fence') || c.includes('enclosure')) return 'fences';
     if (c.includes('pressure')) return 'pressure';
     return 'landscaping';
   };
